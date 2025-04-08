@@ -6,46 +6,46 @@ y = np.array([4,6,8])
 
 # Initialize parameters
 m = 0
-b = 0
+n = 0
 
 # Set learning rate and convergence threshold
 alpha = 0.01
 epsilon = 1e-6
 
-# Maximum number of iterations
-N_max = 1000 # 10000 will see it approximate the exact value
+# Maximum numner of iterations
+N_max = 10000 # 10000 will see it approximate the exact value, 1000 doesnot reach a good enough solution
 
 # Function to compute gradients
-def compute_gradients(m, b, x, y):
-    n = len(x)
-    y_pred = m * x + b
-    dm = -2/n * np.sum(x * (y - y_pred))
-    db = -2/n * np.sum(y - y_pred)
-    return {'dm': dm, 'db': db}
+def compute_gradients(m, n, x, y):
+    size = len(x)
+    y_pred = m * x + n
+    dm = -2/size * np.sum(x * (y - y_pred))
+    dn = -2/size * np.sum(y - y_pred)
+    return {'dm': dm, 'dn': dn}
 
 # Lists to store gradients
 dm_list = []
-db_list = []
+dn_list = []
 ep_list = []
 # Gradient descent loop
 for i in range(N_max):
-    gradients = compute_gradients(m, b, x, y)
+    gradients = compute_gradients(m, n, x, y)
     dm_list.append(gradients['dm'])
-    db_list.append(gradients['db'])
+    dn_list.append(gradients['dn'])
     
     m -= alpha * gradients['dm']
-    b -= alpha * gradients['db']
+    n -= alpha * gradients['dn']
     
     # Check convergence
-    ep  = np.linalg.norm([gradients['dm'], gradients['db']]) # Euclidean value
+    ep  = np.linalg.norm([gradients['dm'], gradients['dn']]) # Euclidean value
     ep_list.append(ep)
     if  ep < epsilon:
         break
 
 # Print the results
 print (dm_list[:10])
-print (db_list[:10])
+print (dn_list[:10])
 print (ep_list[:10])
 print(f"Converged after {i+1} iterations")
 print(f"Slope (m): {m}")
-print(f"Intercept (b): {b}")
+print(f"Intercept (n): {n}")
