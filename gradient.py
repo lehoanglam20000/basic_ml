@@ -1,3 +1,10 @@
+
+'''
+Gradient Descent
+Iterative Approach: Gradient descent is an iterative optimization algorithm that gradually adjusts the parameters to minimize the cost function. It starts with initial guesses and updates the parameters in small steps based on the gradient.
+Approximate Solution: While gradient descent can converge to the optimal solution, it may take many iterations and depends on the learning rate and convergence criteria. It is particularly useful for large datasets where matrix inversion (required by the Normal Equation) is computationally expensive.
+    
+    '''
 import numpy as np
 
 # Example dataset
