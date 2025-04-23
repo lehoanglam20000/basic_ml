@@ -7,7 +7,7 @@ y_pred = [0, 0, 0, 1, 0, 1, 1, 1]
 
 # Compute the confusion matrix
 cm = confusion_matrix(y_true, y_pred)
-
+print (cm)
 # Extract FP and TP
 FP = cm.sum(axis=0) - np.diag(cm)
 TP = np.diag(cm)
